@@ -3,34 +3,27 @@ from datetime import datetime
 def check_birthdate(year, month, day):
 	# write code here
 	year = int(year)
-	if year < 2019 :
+	month = int(month)
+	day = int(day)
+	birth_date = datetime(year,month,day)
+	if birth_date <= datetime.today():
 		return True
-	elif year > 2019 :
+	elif birth_date > datetime.today():
 		return False
-	elif year == 2019:
-		if month < 9:
-			return True
-		elif month > 9:
-			return False
-		elif month == 9:
-			if day <= 4:
-				return True
-			elif day > 4:
-				return False
+
 
 def calculate_age(year, month, day):
     # write code here
+	year = int(year)
 	month = int(month)
 	day = int(day)
-	if month < 9:
-		age = 2019 - int(year)
-	elif month > 9:
-		age = 2019 - int(year) - 1
-	elif month == 9:
-		if day <= 4:
-			age = 2019 - int(year)
-		elif day > 4:
-			age = 2019 - int(year) - 1
+	today = datetime.today()
+
+	if month < today.month or (month == today.month and day < today.day):
+		age = today.year - year
+	else:
+		age = today.year - year - 1
+
 	print("You are %d years old."%(age))
 
 def main():
